@@ -163,11 +163,10 @@ ul {
 h1,
 h2,
 h3,
-.button,
-.eyebrow,
-.panel-kicker,
-.card-label,
-.service-tag,
+  .button,
+  .eyebrow,
+  .card-label,
+  .service-tag,
 .metric-value,
 .timeline-step,
 .article-number {
@@ -398,7 +397,6 @@ h3,
 }
 
 .eyebrow,
-.panel-kicker,
 .card-label,
 .service-tag {
   display: inline-block;
@@ -443,89 +441,6 @@ h3,
   color: rgba(255, 255, 255, 0.84);
 }
 
-.entry-grid {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1.3rem;
-}
-
-.entry-panel {
-  position: relative;
-  min-height: 520px;
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: var(--shadow);
-  background-position: center;
-  background-size: cover;
-  transition:
-    transform 560ms var(--ease-smooth),
-    box-shadow 560ms var(--ease-smooth),
-    border-color 560ms var(--ease-soft);
-  will-change: transform;
-}
-
-.entry-panel-client {
-  background-image:
-    linear-gradient(180deg, rgba(6, 33, 51, 0.16), rgba(5, 26, 41, 0.9)),
-    url("https://images.pexels.com/photos/36004815/pexels-photo-36004815.jpeg?auto=compress&cs=tinysrgb&w=1600");
-}
-
-.entry-panel-candidate {
-  background-image:
-    linear-gradient(180deg, rgba(6, 33, 51, 0.14), rgba(5, 26, 41, 0.88)),
-    url("https://images.pexels.com/photos/4487385/pexels-photo-4487385.jpeg?auto=compress&cs=tinysrgb&w=1600");
-}
-
-.entry-overlay {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(5, 26, 41, 0.54) 48%, rgba(5, 26, 41, 0.94) 100%);
-  transition: opacity 560ms var(--ease-soft);
-}
-
-.entry-content {
-  position: relative;
-  z-index: 1;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 2rem;
-}
-
-.entry-panel h2 {
-  font-size: clamp(1.65rem, 2.8vw, 2.35rem);
-  letter-spacing: 0;
-  color: var(--white);
-  margin-bottom: 0.85rem;
-}
-
-.entry-panel p {
-  color: rgba(255, 255, 255, 0.88);
-  max-width: 38ch;
-}
-
-.panel-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  list-style: none;
-  padding: 0;
-  margin: 1.2rem 0 1.5rem;
-}
-
-.panel-tags li {
-  padding: 0.5rem 0.8rem;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid rgba(255, 255, 255, 0.14);
-  color: var(--white);
-  font-size: 0.92rem;
-  font-weight: 600;
-}
-
 .button-row {
   display: flex;
   flex-wrap: wrap;
@@ -558,11 +473,6 @@ h3,
 .button:focus-visible {
   transform: translateY(-2px);
   box-shadow: 0 12px 28px rgba(13, 70, 61, 0.34);
-}
-
-.button-light {
-  background: rgba(255, 253, 247, 0.94);
-  color: var(--ink);
 }
 
 .button-ghost {
@@ -919,7 +829,34 @@ h3,
 }
 
 .home-paths .callout-block {
+  display: flex;
+  flex-direction: column;
+  color: var(--on-light);
   background: var(--surface-white);
+  border-color: var(--light-border);
+  box-shadow: var(--light-shadow);
+}
+
+.home-paths .callout-block > p {
+  color: var(--on-light-muted);
+}
+
+.home-paths .callout-block .eyebrow {
+  color: var(--forest-rich);
+}
+
+.home-paths .button-ghost {
+  color: var(--on-light);
+  background: transparent;
+  border-color: rgba(10, 36, 51, 0.24);
+}
+
+.hero-paths {
+  align-items: stretch;
+}
+
+.hero-paths .path-button-row {
+  margin-top: auto;
 }
 
 .path-button-row {
@@ -1814,18 +1751,6 @@ body.modal-open {
 }
 
 @media (hover: hover) {
-  .entry-panel:hover,
-  .entry-panel:focus-within {
-    transform: translate3d(0, -5px, 0);
-    border-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 26px 46px rgba(5, 26, 41, 0.24);
-  }
-
-  .entry-panel:hover .entry-overlay,
-  .entry-panel:focus-within .entry-overlay {
-    opacity: 0.82;
-  }
-
   .info-card:hover,
   .service-card:hover,
   .metric-card:hover,
@@ -1901,7 +1826,8 @@ body.modal-open {
   .section-light .stack-item:hover,
   .section-light .callout-block:hover,
   .section-light .team-card:hover,
-  .section-testimonials-light .testimonial-card:hover {
+  .section-testimonials-light .testimonial-card:hover,
+  .home-paths .callout-block:hover {
     background: var(--surface-white);
     border-color: rgba(17, 82, 71, 0.32);
     box-shadow: 0 16px 34px rgba(5, 26, 41, 0.12);
@@ -1964,7 +1890,6 @@ body.modal-open {
     display: none;
   }
 
-  .entry-grid,
   .credibility-strip,
   .diagnostic-strip,
   .split-callout,
@@ -1990,10 +1915,6 @@ body.modal-open {
   .cookie-notice {
     display: grid;
     align-items: start;
-  }
-
-  .entry-panel {
-    min-height: 460px;
   }
 
   .article-block {
@@ -2036,7 +1957,6 @@ body.modal-open {
     grid-template-columns: 1fr;
   }
 
-  .entry-content,
   .info-card,
   .service-card,
   .result-card,
