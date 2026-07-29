@@ -1,7 +1,6 @@
 const navToggle = document.querySelector(".nav-toggle");
 const body = document.body;
 const nav = document.querySelector(".site-nav");
-const header = document.querySelector(".site-header");
 const contactBranches = [
   {
     name: "Bakersfield",
@@ -22,42 +21,6 @@ const contactBranches = [
 const progressBar = document.createElement("div");
 progressBar.className = "site-progress";
 body.prepend(progressBar);
-
-let targetProgress = 0;
-let renderedProgress = 0;
-let progressFrame = null;
-
-const renderProgress = () => {
-  renderedProgress += (targetProgress - renderedProgress) * 0.14;
-
-  if (Math.abs(targetProgress - renderedProgress) < 0.0015) {
-    renderedProgress = targetProgress;
-  }
-
-  progressBar.style.transform = `scaleX(${renderedProgress})`;
-
-  if (renderedProgress !== targetProgress) {
-    progressFrame = window.requestAnimationFrame(renderProgress);
-  } else {
-    progressFrame = null;
-  }
-};
-
-const updateScrollUI = () => {
-  const scrollTop = window.scrollY;
-  const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = scrollHeight > 0 ? scrollTop / scrollHeight : 0;
-
-  targetProgress = Math.min(Math.max(progress, 0), 1);
-
-  if (!progressFrame) {
-    progressFrame = window.requestAnimationFrame(renderProgress);
-  }
-
-  if (header) {
-    header.classList.toggle("is-scrolled", scrollTop > 16);
-  }
-};
 
 if (navToggle && nav) {
   navToggle.addEventListener("click", () => {
@@ -232,7 +195,3 @@ if ("IntersectionObserver" in window && revealItems.length > 0) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
   countUpItems.forEach(animateCount);
 }
-
-window.addEventListener("scroll", updateScrollUI, { passive: true });
-window.addEventListener("resize", updateScrollUI);
-updateScrollUI();

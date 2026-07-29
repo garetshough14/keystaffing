@@ -120,28 +120,12 @@ ul {
     box-shadow var(--duration-medium) var(--ease-soft);
 }
 
-.page-landing .site-header {
-  background: rgba(5, 26, 41, 0.72);
-  border-bottom-color: rgba(255, 255, 255, 0.08);
-}
-
 .header-shell {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
   min-height: 76px;
-}
-
-.site-header.is-scrolled {
-  background: rgba(5, 26, 41, 0.94);
-  border-bottom-color: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.24);
-}
-
-.page-landing .site-header.is-scrolled {
-  background: rgba(5, 26, 41, 0.9);
-  border-bottom-color: rgba(255, 255, 255, 0.1);
 }
 
 .site-progress {
@@ -157,6 +141,8 @@ ul {
   box-shadow: 0 0 18px rgba(17, 64, 58, 0.32);
   pointer-events: none;
   will-change: transform;
+  animation: siteProgress linear both;
+  animation-timeline: scroll(root block);
 }
 
 .brand {
@@ -220,20 +206,11 @@ h3,
     opacity var(--duration-fast) var(--ease-soft);
 }
 
-.page-landing .site-nav a {
-  color: rgba(255, 255, 255, 0.88);
-}
-
 .site-nav a:hover,
 .site-nav a:focus-visible,
 .site-nav button:hover,
 .site-nav button:focus-visible {
   color: var(--sage-bright);
-}
-
-.page-landing .site-nav a:hover,
-.page-landing .site-nav a:focus-visible {
-  color: var(--white);
 }
 
 .site-nav a:not(.nav-phone)::before {
@@ -272,11 +249,6 @@ h3,
   background: rgba(246, 245, 240, 0.075);
 }
 
-.page-landing .nav-phone {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.14);
-}
-
 .nav-toggle {
   display: none;
   border: 1px solid rgba(246, 245, 240, 0.16);
@@ -285,12 +257,6 @@ h3,
   color: var(--white);
   padding: 0.7rem 1rem;
   font-weight: 700;
-}
-
-.page-landing .nav-toggle {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.18);
-  color: var(--white);
 }
 
 .landing-hero,
@@ -722,6 +688,10 @@ h3,
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
+.works-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .metrics-grid {
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
@@ -946,6 +916,15 @@ h3,
   background:
     radial-gradient(circle at right top, rgba(17, 82, 71, 0.1), transparent 20rem),
     linear-gradient(160deg, var(--surface-white) 0%, var(--surface-tint) 100%);
+}
+
+.home-paths .callout-block {
+  background: var(--surface-white);
+}
+
+.path-button-row {
+  align-items: flex-start;
+  flex-direction: column;
 }
 
 .section-light .diagnostic-pill {
@@ -1961,11 +1940,6 @@ body.modal-open {
       visibility 300ms var(--ease-soft);
   }
 
-  .page-landing .site-nav {
-    background: rgba(5, 26, 41, 0.96);
-    border-color: rgba(255, 255, 255, 0.08);
-  }
-
   body.nav-open {
     overflow: hidden;
   }
@@ -1977,15 +1951,13 @@ body.modal-open {
     pointer-events: auto;
   }
 
-  .page-landing .site-nav a,
-  .page-landing .site-nav button,
   .site-nav a,
   .site-nav button {
     color: var(--white);
   }
 
-  .page-landing .site-nav a {
-    color: var(--white);
+  .works-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .site-nav a[aria-current="page"]::after {
@@ -2058,6 +2030,10 @@ body.modal-open {
 
   .landing-hero {
     padding: 4.4rem 0 3.6rem;
+  }
+
+  .works-grid {
+    grid-template-columns: 1fr;
   }
 
   .entry-content,
@@ -2149,6 +2125,16 @@ body.modal-open {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .site-progress {
+    display: none;
+  }
+}
+
+@keyframes siteProgress {
+  to {
+    transform: scaleX(1);
   }
 }
 
