@@ -1170,6 +1170,137 @@ h3,
   scroll-margin-top: 88px;
 }
 
+.branch-message-trigger {
+  cursor: pointer;
+  font: inherit;
+}
+
+.branch-message-popover {
+  width: min(92vw, 620px);
+  max-height: min(88vh, 720px);
+  margin: auto;
+  padding: clamp(1.4rem, 4vw, 2.25rem);
+  overflow: auto;
+  border: 1px solid rgba(17, 82, 71, 0.24);
+  border-radius: var(--radius-lg);
+  background: var(--surface-white);
+  color: var(--on-light);
+  box-shadow: 0 28px 90px rgba(5, 26, 41, 0.38);
+}
+
+.branch-message-popover::backdrop {
+  background: rgba(3, 19, 29, 0.76);
+  backdrop-filter: blur(5px);
+}
+
+.branch-message-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.branch-message-heading .card-label {
+  margin-bottom: 0.55rem;
+  color: var(--forest);
+}
+
+.branch-message-heading .display-sm {
+  max-width: 16ch;
+}
+
+.branch-message-close {
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  padding: 0;
+  border: 1px solid var(--light-border-strong);
+  border-radius: 50%;
+  background: var(--surface-tint);
+  color: var(--navy);
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.75rem;
+  line-height: 1;
+  transition:
+    transform var(--duration-fast) var(--ease-smooth),
+    background var(--duration-fast) var(--ease-soft),
+    border-color var(--duration-fast) var(--ease-soft);
+}
+
+.branch-message-close:hover,
+.branch-message-close:focus-visible {
+  transform: rotate(5deg);
+  border-color: rgba(17, 82, 71, 0.38);
+  background: #e5f1ed;
+}
+
+.branch-message-description {
+  max-width: 52ch;
+  margin-top: 0.9rem;
+  color: var(--on-light-muted);
+}
+
+.branch-message-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+  margin-top: 1.4rem;
+}
+
+.branch-message-option {
+  display: flex;
+  min-height: 164px;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.25rem;
+  border: 1px solid var(--light-border-strong);
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(145deg, rgba(17, 82, 71, 0.08), rgba(255, 255, 255, 0.96));
+  color: var(--on-light);
+  text-decoration: none;
+  transition:
+    transform var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-soft),
+    box-shadow var(--duration-fast) var(--ease-soft);
+}
+
+.branch-message-option:hover,
+.branch-message-option:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(17, 82, 71, 0.48);
+  outline: none;
+  box-shadow: 0 16px 30px rgba(5, 26, 41, 0.12);
+}
+
+.branch-message-city {
+  color: var(--forest);
+  font-family: "League Spartan", Arial, sans-serif;
+  font-size: 1.55rem;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.branch-message-number {
+  margin-top: 0.45rem;
+  color: var(--navy);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.branch-message-action {
+  margin-top: auto;
+  padding-top: 1rem;
+  color: var(--forest);
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .contact-layout {
   display: grid;
   grid-template-columns: minmax(260px, 0.72fr) minmax(0, 1.28fr);
@@ -2201,6 +2332,20 @@ h3,
 
   .button {
     width: 100%;
+  }
+
+  .branch-message-popover {
+    width: calc(100vw - 1.5rem);
+    padding: 1.25rem;
+    border-radius: var(--radius-md);
+  }
+
+  .branch-message-options {
+    grid-template-columns: 1fr;
+  }
+
+  .branch-message-option {
+    min-height: 138px;
   }
 
   .branch-actions {

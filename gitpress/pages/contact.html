@@ -8,7 +8,14 @@
           Whether you need talent, work, or workforce guidance, reach the right team through one clear starting point.
         </p>
         <div class="button-row">
-          <a class="button" href="#contact-form">Send a Message</a>
+          <button
+            class="button branch-message-trigger"
+            type="button"
+            popovertarget="branch-message-picker"
+            aria-haspopup="dialog"
+          >
+            Send a Message
+          </button>
           <a class="button button-ghost" href="tel:16615669333">Call&nbsp;661&#8209;566&#8209;9333</a>
         </div>
       </div>
@@ -31,6 +38,48 @@
       </div>
     </div>
   </section>
+
+  <div
+    class="branch-message-popover"
+    id="branch-message-picker"
+    popover
+    role="dialog"
+    aria-labelledby="branch-message-title"
+    aria-describedby="branch-message-description"
+  >
+    <div class="branch-message-heading">
+      <div>
+        <p class="card-label">Choose a Branch</p>
+        <h2 class="display-sm" id="branch-message-title">Where would you like to text?</h2>
+      </div>
+      <button
+        class="branch-message-close"
+        type="button"
+        popovertarget="branch-message-picker"
+        popovertargetaction="hide"
+        aria-label="Close branch selection"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <p class="branch-message-description" id="branch-message-description">
+      Select a branch and your phone's messaging app will open with the number ready.
+    </p>
+
+    <div class="branch-message-options">
+      <a class="branch-message-option" href="sms:16615669333">
+        <span class="branch-message-city">Bakersfield</span>
+        <span class="branch-message-number">661&#8209;566&#8209;9333</span>
+        <span class="branch-message-action">Text this branch <span aria-hidden="true">&rarr;</span></span>
+      </a>
+      <a class="branch-message-option" href="sms:15594295520">
+        <span class="branch-message-city">Visalia</span>
+        <span class="branch-message-number">559&#8209;429&#8209;5520</span>
+        <span class="branch-message-action">Text this branch <span aria-hidden="true">&rarr;</span></span>
+      </a>
+    </div>
+  </div>
 
   <section class="section section-light contact-main" id="contact-form">
     <div class="shell contact-layout">
