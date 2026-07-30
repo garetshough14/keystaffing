@@ -22,18 +22,22 @@ managed navigation and active-page styles use the existing live URLs below.
 | Consulting | `/services/consulting/` | `gitpress/pages/staffing-guide.html` |
 | Job Seekers | `/office-and-industrial-jobs-bakersfield-ca/` | `gitpress/pages/job-seekers.html` |
 | About Us | `/about-us/` | `gitpress/pages/about.html` |
+| Contact Us | `/contact-us/` | `gitpress/pages/contact.html` |
 
 In **Settings > Reading**, keep **Homepage** set as the static homepage.
 
-Keep the existing **Contact Us**, **Refer a Friend**, **Search Jobs**, and other
-utility pages unchanged. They do not need one of this repository's page-body
-shortcodes.
+Keep the existing **Refer a Friend**, **Search Jobs**, and other utility pages
+unchanged. They do not need one of this repository's page-body shortcodes.
 
 ## GitPress settings
 
 Install and activate GitPress, then open **WordPress Admin > GitPress**.
 The repository is public, so a GitHub token is optional. A cache TTL of `3600`
 seconds is a practical starting point when the push webhook is enabled.
+
+Keep **Enable safe inner shortcode rendering inside GitHub HTML fragments**
+checked. GitPress allowlists the `fluentform` shortcode, and the Contact Us
+page uses `[fluentform id="3"]`.
 
 Use this for **GitPress Managed Header Shortcode**:
 
@@ -90,6 +94,9 @@ Job Seekers (`/office-and-industrial-jobs-bakersfield-ca/`)
 
 About Us (`/about-us/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/about.html" branch="main" format="html" updated_meta="false"]
+
+Contact Us (`/contact-us/`)
+[divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/contact.html" branch="main" format="html" updated_meta="false"]
 ```
 
 ## SEO fields
@@ -105,6 +112,7 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
 | Staffing Guide | How Staffing Actually Works \| Key Staffing | A direct guide to why staffing feels broken, how bill rates actually work, and what employers can do to build a better hiring system. |
 | Job Seekers | Key Staffing Job Seekers \| Find the Right Opportunity | Explore the candidate experience at Key Staffing and connect to jobs in industrial, logistics, manufacturing, healthcare, and operations environments. |
 | About KSC | About KSC \| Key Staffing & Consulting | Learn about Key Staffing & Consulting, its mission, values, branch locations, impact, leadership team, and what makes KSC different. |
+| Contact Us | Contact Key Staffing \| Bakersfield and Visalia | Contact Key Staffing for workforce solutions, employment opportunities, consulting support, or help from the Bakersfield and Visalia teams. |
 
 ## Important runtime behavior
 
@@ -112,8 +120,10 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   longer contains or references a JavaScript file.
 - Navigation uses native `<details>` and `<summary>` elements, so the desktop
   and mobile menus work without repository JavaScript.
-- Contact buttons use normal links to the branch section instead of relying on
-  the old JavaScript modal.
+- Contact buttons use normal links instead of relying on the old JavaScript
+  modal.
+- The Contact Us page renders Fluent Form 3 through GitPress's approved inner
+  shortcode feature. Fluent Forms must be active and form ID 3 must exist.
 - Metrics render their final values immediately. Scroll-reveal content is made
   visible in GitPress mode, so no important content depends on JavaScript.
 - Cookie consent should be handled by the WordPress site's consent/privacy
