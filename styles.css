@@ -1361,6 +1361,40 @@ h3,
   box-shadow: none;
 }
 
+.job-board-section {
+  scroll-margin-top: 88px;
+}
+
+.job-board-heading {
+  max-width: 680px;
+  margin-bottom: 1.8rem;
+}
+
+.job-board-heading p {
+  max-width: 60ch;
+  margin-top: 0.7rem;
+  color: var(--text-muted);
+}
+
+.haley-job-board-surface {
+  width: 100%;
+  min-width: 0;
+  min-height: 600px;
+  padding: clamp(1rem, 2.5vw, 2rem);
+  border: 1px solid var(--light-border-strong);
+  border-radius: var(--radius-lg);
+  background: #fff;
+  color: var(--on-light);
+  box-shadow: 0 24px 60px rgba(5, 26, 41, 0.11);
+  isolation: isolate;
+}
+
+@media (min-width: 720px) {
+  .haley-job-board-surface {
+    min-width: 600px;
+  }
+}
+
 .callout-block {
   min-height: 100%;
 }
@@ -2126,6 +2160,12 @@ h3,
     padding-block: 0.45rem;
   }
 
+  .haley-job-board-surface {
+    min-height: 480px;
+    padding: 0.75rem;
+    border-radius: var(--radius-md);
+  }
+
   .section,
   .page-hero {
     padding: 4.2rem 0;
@@ -2309,12 +2349,13 @@ h3,
 }
 
 .site-nav a.active::after,
-body:has(.page-landing) .site-nav a[href="/"]::after,
-body:has(.page-clients) .site-nav a[href="/services/request-an-employee/"]::after,
-body:has(.page-services) .site-nav a[href="/services/"]::after,
-body:has(.page-inside-staffing) .site-nav a[href="/services/consulting/"]::after,
-body:has(.page-candidates) .site-nav a[href="/office-and-industrial-jobs-bakersfield-ca/"]::after,
-body:has(.page-about) .site-nav a[href="/about-us/"]::after {
+body:has(.page-landing) .site-nav a[href="https://www.hirekeystaff.com/"]::after,
+body:has(.page-clients) .site-nav a[href="https://www.hirekeystaff.com/services/request-an-employee/"]::after,
+body:has(.page-services) .site-nav a[href="https://www.hirekeystaff.com/services/"]::after,
+body:has(.page-inside-staffing) .site-nav a[href="https://www.hirekeystaff.com/services/consulting/"]::after,
+body:has(.page-candidates) .site-nav a[href="https://www.hirekeystaff.com/office-and-industrial-jobs-bakersfield-ca/"]::after,
+body:has(.page-job-board) .site-nav a[href="https://www.hirekeystaff.com/office-and-industrial-jobs-bakersfield-ca/"]::after,
+body:has(.page-about) .site-nav a[href="https://www.hirekeystaff.com/about-us/"]::after {
   content: "";
   position: absolute;
   left: 0;
@@ -2324,7 +2365,7 @@ body:has(.page-about) .site-nav a[href="/about-us/"]::after {
   background: linear-gradient(90deg, var(--sage), var(--cream-strong));
 }
 
-body:has(.page-contact) .site-nav a[href="/contact-us/"] {
+body:has(.page-contact) .site-nav a[href="https://www.hirekeystaff.com/contact-us/"] {
   border-color: rgba(224, 242, 235, 0.58);
   background: rgba(224, 242, 235, 0.14);
   color: var(--white);

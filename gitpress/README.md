@@ -23,11 +23,14 @@ managed navigation and active-page styles use the existing live URLs below.
 | Job Seekers | `/office-and-industrial-jobs-bakersfield-ca/` | `gitpress/pages/job-seekers.html` |
 | About Us | `/about-us/` | `gitpress/pages/about.html` |
 | Contact Us | `/contact-us/` | `gitpress/pages/contact.html` |
+| Haley remote job board template | `/remote-job-board-template/` | `gitpress/pages/job-board.html` |
 
 In **Settings > Reading**, keep **Homepage** set as the static homepage.
 
-Keep the existing **Refer a Friend**, **Search Jobs**, and other utility pages
-unchanged. They do not need one of this repository's page-body shortcodes.
+Keep the existing **Refer a Friend**, the visitor-facing **Search Jobs**
+destination at `jobs.hirekeystaff.com`, and other utility pages unchanged.
+The Haley remote template is listed separately below and does use a GitPress
+page-body shortcode.
 
 ## GitPress settings
 
@@ -97,6 +100,9 @@ About Us (`/about-us/`)
 
 Contact Us (`/contact-us/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/contact.html" branch="main" format="html" updated_meta="false"]
+
+Haley remote job board template (`/remote-job-board-template/`)
+[divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/job-board.html" branch="main" format="html" updated_meta="false"]
 ```
 
 ## SEO fields
@@ -113,6 +119,7 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
 | Job Seekers | Key Staffing Job Seekers \| Find the Right Opportunity | Explore the candidate experience at Key Staffing and connect to jobs in industrial, logistics, manufacturing, healthcare, and operations environments. |
 | About KSC | About KSC \| Key Staffing & Consulting | Learn about Key Staffing & Consulting, its mission, values, branch locations, impact, leadership team, and what makes KSC different. |
 | Contact Us | Contact Key Staffing \| Bakersfield and Visalia | Contact Key Staffing for workforce solutions, employment opportunities, consulting support, or help from the Bakersfield and Visalia teams. |
+| Haley remote job board template | Search Jobs \| Key Staffing | Search current Key Staffing opportunities by keyword, location, industry, distance, and employment type. |
 
 ## Important runtime behavior
 
@@ -124,6 +131,11 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   modal.
 - The Contact Us page renders Fluent Form 3 through GitPress's approved inner
   shortcode feature. Fluent Forms must be active and form ID 3 must exist.
+- The Haley remote job board template keeps `!!!HMG_INCLUDE!!!` as an exact,
+  unformatted line inside a white desktop content area. Haley Marketing replaces
+  this marker with the live career portal content when it builds
+  `jobs.hirekeystaff.com`; the marker can remain visible when the WordPress
+  template URL is opened directly.
 - Metrics render their final values immediately. Scroll-reveal content is made
   visible in GitPress mode, so no important content depends on JavaScript.
 - Cookie consent should be handled by the WordPress site's consent/privacy
