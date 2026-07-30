@@ -16,16 +16,18 @@
       <a class="brand" href="index.html" aria-label="Key Staffing home">
         <img class="brand-logo" src="branding/6.png" alt="Key Staffing &amp; Consulting">
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
-      <nav class="site-nav" id="site-nav" aria-label="Primary">
-        <a href="index.html">Home</a>
-        <a href="clients.html">Employers</a>
-        <a href="services.html">Services</a>
-        <a href="inside-staffing.html">Staffing Guide</a>
-        <a href="candidates.html">Job Seekers</a>
-        <a href="about.html" aria-current="page">About KSC</a>
-        <button class="nav-phone" type="button" data-contact-open>Contact Us</button>
-      </nav>
+      <details class="nav-shell">
+        <summary class="nav-toggle">Menu</summary>
+        <nav class="site-nav" aria-label="Primary">
+          <a href="index.html">Home</a>
+          <a href="clients.html">Employers</a>
+          <a href="services.html">Services</a>
+          <a href="inside-staffing.html">Staffing Guide</a>
+          <a href="candidates.html">Job Seekers</a>
+          <a href="about.html" aria-current="page">About KSC</a>
+          <a class="nav-phone" href="#branches">Contact Us</a>
+        </nav>
+      </details>
     </div>
   </header>
 
@@ -40,7 +42,7 @@
             Very few firms become an extension of your business.
           </p>
           <div class="button-row">
-            <button class="button" type="button" data-contact-open>Contact a Branch</button>
+            <a class="button" href="#branches">Contact a Branch</a>
             <a class="button button-ghost" href="clients.html">Employer Solutions</a>
           </div>
         </div>
@@ -250,7 +252,7 @@
       </div>
     </section>
 
-    <section class="section section-dark">
+    <section class="section section-dark" id="branches">
       <div class="shell">
         <div class="section-heading reveal">
           <p class="eyebrow">Branch Locations</p>
@@ -315,7 +317,7 @@
           <h2 class="display-md">Talk with the branch that can help you move faster.</h2>
         </div>
         <div class="button-row">
-          <button class="button" type="button" data-contact-open>Contact Us</button>
+          <a class="button" href="#branches">Contact Us</a>
           <a class="button button-ghost" href="services.html">View Services</a>
         </div>
       </div>
@@ -339,12 +341,11 @@
       </div>
       <div class="footer-contact">
         <a href="mailto:info@hirekeystaff.com">info@hirekeystaff.com</a>
-        <button class="footer-contact-button" type="button" data-contact-open>Contact Us</button>
-        <span>&copy; <span data-current-year></span> Key Staffing, Inc.</span>
+        <a class="footer-contact-button" href="#branches">Contact Us</a>
+        <span>&copy; 2026 Key Staffing, Inc.</span>
       </div>
     </div>
   </footer>
 
-  <script src="script.js"></script>
 </body>
 </html>

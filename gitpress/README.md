@@ -43,11 +43,21 @@ Use this for **GitPress Managed Footer Shortcode**:
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/partials/footer.html" branch="main" format="html" updated_meta="false"]
 ```
 
-The managed header imports the Google fonts and the canonical root
-`styles.css` through jsDelivr. This is necessary because GitPress strips
-`<link>` tags and does not turn a separate CSS file into a stylesheet.
-When `styles.css` changes, update the `?v=` value in
-`gitpress/partials/header.html` so browsers and the CDN fetch the new version.
+The managed header contains the complete responsive stylesheet inside its own
+`<style>` block. It does not import or link to a separate CSS file. This is
+necessary because GitPress strips `<link>` tags and does not turn a separate
+CSS file into a stylesheet.
+
+After changing the canonical root `styles.css`, rebuild the inline header:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\gitpress\build-inline-header.ps1
+```
+
+The script replaces the CSS placeholder in
+`gitpress/partials/header.template.html` and writes the deployable
+`gitpress/partials/header.html`. Commit both `styles.css` and the rebuilt
+header.
 
 ## Attach each page
 
@@ -94,10 +104,10 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
 
 ## Important runtime behavior
 
-- GitPress deliberately removes remote `<script>` tags. The WordPress pages do
-  not load the root `script.js`.
-- Navigation remains interactive because GitPress Managed mode supplies the
-  mobile-menu and active-link script for the IDs used in `header.html`.
+- GitPress deliberately removes remote `<script>` tags. This repository no
+  longer contains or references a JavaScript file.
+- Navigation uses native `<details>` and `<summary>` elements, so the desktop
+  and mobile menus work without repository JavaScript.
 - Contact buttons use normal links to the branch section instead of relying on
   the old JavaScript modal.
 - Metrics render their final values immediately. Scroll-reveal content is made
@@ -106,14 +116,23 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   plugin if tracking is added. The old localStorage-only notice is not loaded.
 - Images use absolute jsDelivr URLs because relative repo asset paths would
   resolve against the WordPress page URL and break.
-- The CSS and image CDN URLs require this repository to remain public. If the
-  repository becomes private, move those assets into the WordPress media/theme
-  layer and replace the CDN URLs; the GitPress token only authenticates the
+- The image CDN URLs require this repository to remain public. If the
+  repository becomes private, move the images into the WordPress media layer
+  and replace the CDN URLs; the GitPress token only authenticates the
   server-side HTML fetch.
 
 ## Cache invalidation
 
 For immediate HTML updates, configure the GitHub push webhook shown in
 **WordPress Admin > GitPress** and use the same webhook secret on both sides.
-GitPress will invalidate only the changed cached paths. The imported CSS uses
-its separate `?v=` cache token as described above.
+GitPress will invalidate only the changed cached paths. Because the CSS is
+embedded in `header.html`, stylesheet changes appear after that header path is
+rebuilt, pushed, and invalidated.
+
+
+
+<!-- https://www.hirekeystaff.com/about-us/ -->
+<!-- https://www.hirekeystaff.com/services/ -->
+<!-- https://www.hirekeystaff.com/services/consulting/ -->
+<!-- https://www.hirekeystaff.com/services/request-an-employee/ -->
+<!-- https://www.hirekeystaff.com/office-and-industrial-jobs-bakersfield-ca/refer-a-friend/ -->

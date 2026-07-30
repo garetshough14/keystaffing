@@ -1,3 +1,19 @@
+@font-face {
+  font-family: "League Spartan";
+  font-style: normal;
+  font-weight: 500 800;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/leaguespartan/v15/kJEqBuEW6A0lliaV_m88ja5TwvZwLZk.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Public Sans";
+  font-style: normal;
+  font-weight: 400 700;
+  font-display: swap;
+  src: url("https://fonts.gstatic.com/s/publicsans/v21/ijwRs572Xtc6ZYQws9YVwnNGfJ4.woff2") format("woff2");
+}
+
 :root {
   --ink: #051a29;
   --navy: #062133;
@@ -128,7 +144,8 @@ ul {
   min-height: 76px;
 }
 
-.site-progress {
+.site-progress,
+body::before {
   position: fixed;
   top: 0;
   left: 0;
@@ -143,6 +160,10 @@ ul {
   will-change: transform;
   animation: siteProgress linear both;
   animation-timeline: scroll(root block);
+}
+
+body::before {
+  content: "";
 }
 
 .brand {
@@ -185,6 +206,22 @@ h3,
 .brand-logo-footer {
   width: 220px;
   height: 72px;
+}
+
+.nav-shell {
+  margin-left: auto;
+}
+
+.nav-shell > summary {
+  list-style: none;
+}
+
+.nav-shell > summary::-webkit-details-marker {
+  display: none;
+}
+
+.nav-shell > .site-nav {
+  display: flex !important;
 }
 
 .site-nav {
@@ -256,6 +293,7 @@ h3,
   color: var(--white);
   padding: 0.7rem 1rem;
   font-weight: 700;
+  cursor: pointer;
 }
 
 .landing-hero,
@@ -1640,109 +1678,9 @@ h3,
   text-align: left;
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
-.contact-modal[hidden] {
-  display: none;
-}
-
-.contact-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 80;
-  display: grid;
-  place-items: center;
-  padding: 1rem;
-}
-
-.contact-modal__backdrop {
-  position: absolute;
-  inset: 0;
-  background: rgba(3, 19, 31, 0.78);
-  backdrop-filter: blur(10px);
-}
-
-.contact-modal__panel {
-  position: relative;
-  z-index: 1;
-  width: min(920px, 100%);
-  max-height: min(760px, calc(100vh - 2rem));
-  overflow: auto;
-  padding: clamp(1.3rem, 3vw, 2rem);
-  border-radius: 28px;
-  background:
-    radial-gradient(circle at top right, rgba(17, 82, 71, 0.18), transparent 22rem),
-    linear-gradient(180deg, rgba(255, 253, 247, 0.1), rgba(246, 245, 240, 0.025)),
-    var(--blue-panel);
-  border: 1px solid rgba(246, 245, 240, 0.16);
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.38);
-}
-
-.contact-modal__close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  min-height: 40px;
-  padding: 0.55rem 0.8rem;
-  border-radius: 999px;
-  border: 1px solid rgba(246, 245, 240, 0.16);
-  background: rgba(255, 253, 247, 0.08);
-  color: var(--cream-strong);
-  cursor: pointer;
-  font-weight: 800;
-}
-
-.contact-modal__copy {
-  max-width: 58ch;
-  margin-bottom: 1.3rem;
-  color: var(--text-muted);
-}
-
-.contact-modal .branch-card {
-  box-shadow: none;
-}
-
-.cookie-notice {
-  position: fixed;
-  left: 1rem;
-  right: 1rem;
-  bottom: 1rem;
-  z-index: 70;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  width: min(860px, calc(100% - 2rem));
-  margin: 0 auto;
-  padding: 1rem;
-  border-radius: 20px;
-  background:
-    linear-gradient(180deg, rgba(255, 253, 247, 0.1), rgba(246, 245, 240, 0.035)),
-    rgba(5, 26, 41, 0.96);
-  border: 1px solid rgba(246, 245, 240, 0.16);
-  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
-}
-
-.cookie-notice p {
-  margin: 0;
-  color: var(--text-muted);
-}
-
-.cookie-notice .button {
-  min-height: 42px;
-  padding: 0.72rem 1rem;
-}
-
 .reveal {
-  opacity: 0;
-  transform: translate3d(0, 24px, 0);
-  transition:
-    opacity 720ms var(--ease-soft),
-    transform 820ms var(--ease-smooth);
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  opacity: 1;
+  transform: none;
 }
 
 .reveal.is-visible {
@@ -1866,11 +1804,11 @@ body.modal-open {
       visibility 300ms var(--ease-soft);
   }
 
-  body.nav-open {
-    overflow: hidden;
+  .nav-shell > .site-nav {
+    display: grid !important;
   }
 
-  body.nav-open .site-nav {
+  .nav-shell[open] .site-nav {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -1908,11 +1846,6 @@ body.modal-open {
   }
 
   .contact-band {
-    display: grid;
-    align-items: start;
-  }
-
-  .cookie-notice {
     display: grid;
     align-items: start;
   }
@@ -1980,8 +1913,7 @@ body.modal-open {
     width: 100%;
   }
 
-  .branch-actions,
-  .cookie-notice {
+  .branch-actions {
     align-items: stretch;
   }
 
@@ -1989,10 +1921,6 @@ body.modal-open {
   .branch-email {
     width: 100%;
     justify-content: center;
-  }
-
-  .contact-modal__panel {
-    padding-top: 3.8rem;
   }
 
   .brand-logo {
@@ -2047,7 +1975,8 @@ body.modal-open {
     transform: none;
   }
 
-  .site-progress {
+  .site-progress,
+  body::before {
     display: none;
   }
 }
@@ -2074,7 +2003,7 @@ body.modal-open {
 }
 
 /* GitPress Managed mode compatibility.
-   GitPress supplies the document shell and its own mobile-navigation script. */
+   The repo-managed layout is complete without a separate stylesheet or script. */
 .dgs-gitpress-managed,
 .dgs-gitpress-managed .dgs-managed-page,
 .dgs-gitpress-managed .dgs-managed-main,
@@ -2124,7 +2053,13 @@ body.modal-open {
   scroll-margin-top: 108px;
 }
 
-.site-nav a.active::after {
+.site-nav a.active::after,
+body:has(.page-landing) .site-nav a[href="/"]::after,
+body:has(.page-clients) .site-nav a[href="/employers/"]::after,
+body:has(.page-services) .site-nav a[href="/services/"]::after,
+body:has(.page-inside-staffing) .site-nav a[href="/staffing-guide/"]::after,
+body:has(.page-candidates) .site-nav a[href="/job-seekers/"]::after,
+body:has(.page-about) .site-nav a[href="/about/"]::after {
   content: "";
   position: absolute;
   left: 0;
@@ -2132,39 +2067,6 @@ body.modal-open {
   bottom: -0.45rem;
   height: 2px;
   background: linear-gradient(90deg, var(--sage), var(--cream-strong));
-}
-
-.nav-scrim {
-  display: none;
-}
-
-@media (max-width: 980px) {
-  .dgs-gitpress-managed.menu-open {
-    overflow: hidden;
-  }
-
-  .dgs-gitpress-managed.menu-open .site-nav {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .dgs-gitpress-managed .site-nav {
-    z-index: 3;
-  }
-
-  .dgs-gitpress-managed .nav-scrim {
-    position: fixed;
-    inset: 76px 0 0;
-    z-index: 1;
-    background: rgba(3, 19, 31, 0.58);
-    backdrop-filter: blur(4px);
-  }
-
-  .dgs-gitpress-managed.menu-open .nav-scrim {
-    display: block;
-  }
 }
 
 @media (max-width: 782px) {
