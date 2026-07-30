@@ -8,22 +8,26 @@ The original root HTML files remain as the standalone reference site. WordPress
 uses the files in `gitpress/pages/` as page bodies and the files in
 `gitpress/partials/` as the shared site header and footer.
 
-## Required WordPress page slugs
+## Existing WordPress page mapping
 
-Create or rename the WordPress pages so their permalinks match this table.
-The root-relative links and GitPress active-navigation logic depend on these
-slugs.
+Use the site's existing WordPress pages and permalinks. Do not create the old
+`/employers/`, `/staffing-guide/`, `/job-seekers/`, or `/about/` routes. The
+managed navigation and active-page styles use the existing live URLs below.
 
-| WordPress page | Slug | GitPress source |
+| Existing WordPress page | Existing permalink | GitPress source |
 | --- | --- | --- |
-| Home | site front page | `gitpress/pages/home.html` |
-| Employers | `employers` | `gitpress/pages/employers.html` |
-| Services | `services` | `gitpress/pages/services.html` |
-| Staffing Guide | `staffing-guide` | `gitpress/pages/staffing-guide.html` |
-| Job Seekers | `job-seekers` | `gitpress/pages/job-seekers.html` |
-| About KSC | `about` | `gitpress/pages/about.html` |
+| Homepage | `/` | `gitpress/pages/home.html` |
+| Request an Employee | `/services/request-an-employee/` | `gitpress/pages/employers.html` |
+| Services | `/services/` | `gitpress/pages/services.html` |
+| Consulting | `/services/consulting/` | `gitpress/pages/staffing-guide.html` |
+| Job Seekers | `/office-and-industrial-jobs-bakersfield-ca/` | `gitpress/pages/job-seekers.html` |
+| About Us | `/about-us/` | `gitpress/pages/about.html` |
 
-In **Settings > Reading**, set **Home** as the static homepage.
+In **Settings > Reading**, keep **Homepage** set as the static homepage.
+
+Keep the existing **Contact Us**, **Refer a Friend**, **Search Jobs**, and other
+utility pages unchanged. They do not need one of this repository's page-body
+shortcodes.
 
 ## GitPress settings
 
@@ -69,22 +73,22 @@ Choose:
 - **Shortcode:** the matching value below
 
 ```text
-Home
+Homepage (`/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/home.html" branch="main" format="html" updated_meta="false"]
 
-Employers
+Request an Employee (`/services/request-an-employee/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/employers.html" branch="main" format="html" updated_meta="false"]
 
-Services
+Services (`/services/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/services.html" branch="main" format="html" updated_meta="false"]
 
-Staffing Guide
+Consulting (`/services/consulting/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/staffing-guide.html" branch="main" format="html" updated_meta="false"]
 
-Job Seekers
+Job Seekers (`/office-and-industrial-jobs-bakersfield-ca/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/job-seekers.html" branch="main" format="html" updated_meta="false"]
 
-About KSC
+About Us (`/about-us/`)
 [divi_github_content owner="garetshough14" repo="keystaffing" path="gitpress/pages/about.html" branch="main" format="html" updated_meta="false"]
 ```
 

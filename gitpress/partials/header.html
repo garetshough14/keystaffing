@@ -210,6 +210,7 @@ h3,
 }
 
 .nav-shell {
+  display: none;
   margin-left: auto;
 }
 
@@ -221,14 +222,14 @@ h3,
   display: none;
 }
 
-.nav-shell > .site-nav {
-  display: flex !important;
-}
-
 .site-nav {
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.site-nav-desktop {
+  margin-left: auto;
 }
 
 .site-nav a,
@@ -1779,11 +1780,19 @@ h3,
 }
 
 @media (max-width: 980px) {
+  .site-nav-desktop {
+    display: none;
+  }
+
+  .nav-shell {
+    display: block;
+  }
+
   .nav-toggle {
     display: inline-flex;
   }
 
-  .site-nav {
+  .site-nav-mobile {
     position: absolute;
     top: calc(100% + 1px);
     left: 1rem;
@@ -1809,7 +1818,7 @@ h3,
     display: grid !important;
   }
 
-  .nav-shell[open] .site-nav {
+  .nav-shell[open] .site-nav-mobile {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
@@ -2056,11 +2065,11 @@ h3,
 
 .site-nav a.active::after,
 body:has(.page-landing) .site-nav a[href="/"]::after,
-body:has(.page-clients) .site-nav a[href="/employers/"]::after,
+body:has(.page-clients) .site-nav a[href="/services/request-an-employee/"]::after,
 body:has(.page-services) .site-nav a[href="/services/"]::after,
-body:has(.page-inside-staffing) .site-nav a[href="/staffing-guide/"]::after,
-body:has(.page-candidates) .site-nav a[href="/job-seekers/"]::after,
-body:has(.page-about) .site-nav a[href="/about/"]::after {
+body:has(.page-inside-staffing) .site-nav a[href="/services/consulting/"]::after,
+body:has(.page-candidates) .site-nav a[href="/office-and-industrial-jobs-bakersfield-ca/"]::after,
+body:has(.page-about) .site-nav a[href="/about-us/"]::after {
   content: "";
   position: absolute;
   left: 0;
@@ -2087,16 +2096,26 @@ body:has(.page-about) .site-nav a[href="/about/"]::after {
       >
     </a>
 
+    <nav class="site-nav site-nav-desktop" aria-label="Primary">
+      <a href="/">Home</a>
+      <a href="/services/request-an-employee/">Employers</a>
+      <a href="/services/">Services</a>
+      <a href="/services/consulting/">Staffing Guide</a>
+      <a href="/office-and-industrial-jobs-bakersfield-ca/">Job Seekers</a>
+      <a href="/about-us/">About KSC</a>
+      <a class="nav-phone" href="/contact-us/">Contact Us</a>
+    </nav>
+
     <details class="nav-shell">
       <summary class="nav-toggle">Menu</summary>
-      <nav class="site-nav" aria-label="Primary">
+      <nav class="site-nav site-nav-mobile" aria-label="Mobile primary">
         <a href="/">Home</a>
-        <a href="/employers/">Employers</a>
+        <a href="/services/request-an-employee/">Employers</a>
         <a href="/services/">Services</a>
-        <a href="/staffing-guide/">Staffing Guide</a>
-        <a href="/job-seekers/">Job Seekers</a>
-        <a href="/about/">About KSC</a>
-        <a class="nav-phone" href="/about/#branches">Contact Us</a>
+        <a href="/services/consulting/">Staffing Guide</a>
+        <a href="/office-and-industrial-jobs-bakersfield-ca/">Job Seekers</a>
+        <a href="/about-us/">About KSC</a>
+        <a class="nav-phone" href="/contact-us/">Contact Us</a>
       </nav>
     </details>
   </div>
