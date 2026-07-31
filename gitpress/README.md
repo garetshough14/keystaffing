@@ -39,8 +39,9 @@ The repository is public, so a GitHub token is optional. A cache TTL of `3600`
 seconds is a practical starting point when the push webhook is enabled.
 
 Keep **Enable safe inner shortcode rendering inside GitHub HTML fragments**
-checked. GitPress allowlists the `fluentform` shortcode, and the Contact Us
-page uses `[fluentform id="3"]`.
+checked. GitPress allowlists the `fluentform` shortcode. The Contact Us page
+uses `[fluentform id="3"]`, and the shared workforce-toolkit popup uses
+`[fluentform id="4"]`.
 
 Use this for **GitPress Managed Header Shortcode**:
 
@@ -131,6 +132,11 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   modal.
 - The Contact Us page renders Fluent Form 3 through GitPress's approved inner
   shortcode feature. Fluent Forms must be active and form ID 3 must exist.
+- The shared header renders Fluent Form 4 inside the workforce-toolkit popup.
+  The popup appears after a visitor reaches the halfway point on Home or
+  Services. The **View pricing clarity** button on Request an Employee also
+  opens it directly. The halfway trigger uses the browser's scroll-driven CSS;
+  the button trigger remains available if a browser does not support that CSS.
 - The Haley remote job board template keeps `!!!HMG_INCLUDE!!!` as an exact,
   unformatted line inside a white desktop content area. Haley Marketing replaces
   this marker with the live career portal content when it builds
@@ -146,6 +152,125 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   repository becomes private, move the images into the WordPress media layer
   and replace the CDN URLs; the GitPress token only authenticates the
   server-side HTML fetch.
+
+## Fluent Form 4 setup
+
+The repository controls the popup shell and styling, but Fluent Forms controls
+the fields, submit-button label, confirmation, and autoresponder. In
+**WordPress Admin > Fluent Forms > Form 4**:
+
+1. Include at least a First Name field and required Email field.
+2. Set the submit-button label to **Get My Free Workforce Toolkit**.
+3. Add an email notification addressed to the visitor's Email field with the
+   subject **Your Workforce Planning Toolkit Is Ready**.
+4. Use Fluent Forms' smartcode picker to insert the actual First Name field in
+   place of `{{first_name}}` in the message below.
+5. Replace the two bracketed placeholders before enabling the notification.
+
+For consistent halfway-page behavior in Firefox as well as Chrome, Edge, and
+Safari, open **Settings & Integrations > Custom CSS/JS** for Form 4 and paste
+the following into the Custom JavaScript field without `<script>` tags. The
+repository's CSS trigger remains as a no-JavaScript fallback on browsers that
+support scroll-driven CSS.
+
+```javascript
+(function () {
+  const modal = document.getElementById('workforce-toolkit');
+
+  if (!modal || modal.dataset.behaviorReady === 'true') {
+    return;
+  }
+
+  modal.dataset.behaviorReady = 'true';
+
+  const closeControl = modal.querySelector('.workforce-toolkit-close');
+  const autoPage = document.querySelector('.page-landing, .page-services');
+  let autoTriggered = false;
+  let lastFocus = null;
+
+  function openToolkit(trigger) {
+    lastFocus = trigger || document.activeElement;
+    modal.classList.remove('is-dismissed');
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-modal', 'true');
+    document.documentElement.classList.add('workforce-toolkit-open');
+
+    if (closeControl) {
+      closeControl.focus({ preventScroll: true });
+    }
+  }
+
+  function closeToolkit() {
+    modal.classList.remove('is-open');
+    modal.classList.add('is-dismissed');
+    modal.removeAttribute('aria-modal');
+    document.documentElement.classList.remove('workforce-toolkit-open');
+
+    if (lastFocus && lastFocus !== document.body && typeof lastFocus.focus === 'function') {
+      lastFocus.focus({ preventScroll: true });
+    }
+  }
+
+  document.querySelectorAll('a[href="#workforce-toolkit"]').forEach(function (trigger) {
+    trigger.addEventListener('click', function (event) {
+      event.preventDefault();
+      openToolkit(trigger);
+    });
+  });
+
+  modal.querySelectorAll('a[href="#workforce-toolkit-dismissed"]').forEach(function (trigger) {
+    trigger.addEventListener('click', function (event) {
+      event.preventDefault();
+      closeToolkit();
+    });
+  });
+
+  document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+      closeToolkit();
+    }
+  });
+
+  function checkScrollPosition() {
+    const maxScroll = Math.max(document.documentElement.scrollHeight - window.innerHeight, 0);
+
+    if (!autoTriggered && maxScroll > 0 && window.scrollY >= maxScroll * 0.5) {
+      autoTriggered = true;
+      window.removeEventListener('scroll', checkScrollPosition);
+      openToolkit();
+    }
+  }
+
+  if (autoPage) {
+    window.addEventListener('scroll', checkScrollPosition, { passive: true });
+    checkScrollPosition();
+  }
+}());
+```
+
+```text
+Hi {{first_name}},
+
+Thanks for requesting the Key Staffing & Consulting Workforce Planning Toolkit.
+
+Below you'll find two resources designed to help you make more informed workforce decisions:
+
+Staffing Pricing Calculator: Gain a clearer understanding of staffing costs, markups, and workforce budgeting so you can plan with confidence.
+[INSERT STAFFING PRICING CALCULATOR LINK]
+
+The 5 Questions Every Business Should Answer Before Choosing a Staffing Partner: Learn the questions every business leader should ask before selecting a staffing partner and discover how the right workforce strategy can improve operations, reduce turnover, and support long-term growth.
+https://drive.google.com/file/d/1DT5kDM-kqDP_aZ_vSylrejAcz9rdc84K/view?usp=drive_link
+
+If you're evaluating a staffing partner, planning for growth, or simply want a second opinion on your workforce strategy, we'd be happy to help. Every business is different, and sometimes a 15-minute conversation can uncover opportunities to improve hiring, strengthen workforce stability, and support long-term growth.
+
+Schedule a conversation with our team:
+[INSERT BOOKING LINK]
+
+At Key Staffing & Consulting, we don't believe in one-size-fits-all staffing. We take the time to understand your operation, your goals, and the workforce challenges behind every hiring decision so we can deliver solutions that strengthen your business, not just fill positions.
+
+We look forward to connecting with you.
+Jackie & The Key Staffing & Consulting Team
+```
 
 ## Cache invalidation
 
