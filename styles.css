@@ -1531,11 +1531,13 @@ h3,
 
 .workforce-toolkit-panel {
   position: relative;
-  width: min(100%, 720px);
-  max-height: calc(100vh - clamp(1.5rem, 6vw, 4rem));
-  max-height: calc(100dvh - clamp(1.5rem, 6vw, 4rem));
-  padding: clamp(1.35rem, 4vw, 2.5rem);
-  overflow-y: auto;
+  display: grid;
+  width: min(100%, 900px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
+  grid-template-rows: auto 1fr;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: visible;
   border: 1px solid rgba(17, 82, 71, 0.28);
   border-radius: var(--radius-lg);
   background:
@@ -1554,10 +1556,10 @@ h3,
 }
 
 .workforce-toolkit-heading {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
+  position: relative;
+  grid-column: 1;
+  grid-row: 1;
+  padding-right: 2.75rem;
 }
 
 .workforce-toolkit-heading .eyebrow {
@@ -1572,10 +1574,12 @@ h3,
 }
 
 .workforce-toolkit-close {
+  position: absolute;
+  top: 0;
+  right: 0;
   display: inline-grid;
-  flex: 0 0 auto;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   place-items: center;
   border: 1px solid var(--light-border-strong);
   border-radius: 50%;
@@ -1599,15 +1603,49 @@ h3,
 }
 
 .workforce-toolkit-description {
+  grid-column: 1;
+  grid-row: 2;
+  align-self: start;
   max-width: 60ch;
-  margin: 1rem 0 1.5rem;
+  margin: 0.8rem 0 0;
   color: var(--on-light-muted);
   font-size: clamp(1rem, 1.5vw, 1.1rem);
 }
 
+.workforce-toolkit-form {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  min-width: 0;
+  padding-left: clamp(1.25rem, 3vw, 2rem);
+  border-left: 1px solid var(--light-border);
+}
+
+.workforce-toolkit-form .fluentform .ff-el-group {
+  margin-bottom: 0.65rem;
+}
+
+.workforce-toolkit-form .fluentform .ff-el-input--label {
+  margin-bottom: 0.28rem;
+}
+
+.workforce-toolkit-form .fluentform .ff-el-input--label label {
+  font-size: 0.88rem;
+}
+
+.workforce-toolkit-form .fluentform .ff-el-form-control {
+  min-height: 44px;
+  padding-top: 0.58rem;
+  padding-bottom: 0.58rem;
+}
+
+.workforce-toolkit-form .fluentform textarea.ff-el-form-control {
+  min-height: 82px;
+}
+
 .workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style {
-  min-height: 50px !important;
-  padding: 0.88rem 1.35rem !important;
+  width: 100%;
+  min-height: 46px !important;
+  padding: 0.75rem 1.2rem !important;
   border: 1px solid var(--forest-deep) !important;
   border-radius: 999px !important;
   background: var(--forest-rich) !important;
@@ -2536,15 +2574,35 @@ html.workforce-toolkit-open {
   }
 
   .workforce-toolkit-panel {
+    display: block;
     width: 100%;
-    max-height: calc(100vh - 1.5rem);
-    max-height: calc(100dvh - 1.5rem);
-    padding: 1.3rem;
+    max-height: none;
+    padding: 1.15rem;
+    overflow: visible;
     border-radius: var(--radius-md);
   }
 
   .workforce-toolkit-heading .display-sm {
-    font-size: clamp(1.8rem, 9vw, 2.3rem);
+    font-size: clamp(1.65rem, 8vw, 2.1rem);
+  }
+
+  .workforce-toolkit-description {
+    margin-top: 0.55rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .workforce-toolkit-form {
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    padding-left: 0;
+    border-top: 1px solid var(--light-border);
+    border-left: 0;
+  }
+
+  .workforce-toolkit-close {
+    width: 38px;
+    height: 38px;
   }
 
   .workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style {
