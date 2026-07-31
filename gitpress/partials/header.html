@@ -1535,10 +1535,10 @@ h3,
   display: grid;
   width: min(100%, 900px);
   grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto;
   column-gap: clamp(1.5rem, 4vw, 3rem);
   padding: clamp(1.25rem, 3vw, 2rem);
-  overflow: visible;
+  overflow: hidden;
   border: 1px solid rgba(17, 82, 71, 0.28);
   border-radius: var(--radius-lg);
   background:
@@ -1552,15 +1552,20 @@ h3,
   content: "";
   position: absolute;
   inset: 0 0 auto;
+  z-index: 2;
   height: 5px;
   background: linear-gradient(90deg, var(--forest-rich), var(--sage), var(--navy));
 }
 
-.workforce-toolkit-heading {
-  position: relative;
+.workforce-toolkit-copy {
   grid-column: 1;
   grid-row: 1;
+  align-self: center;
   padding-right: 2.75rem;
+}
+
+.workforce-toolkit-heading {
+  display: block;
 }
 
 .workforce-toolkit-heading .eyebrow {
@@ -1575,9 +1580,12 @@ h3,
 }
 
 .workforce-toolkit-close {
-  position: absolute;
-  top: 0;
-  right: 0;
+  position: relative;
+  z-index: 3;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: end;
   display: inline-grid;
   width: 40px;
   height: 40px;
@@ -1604,9 +1612,6 @@ h3,
 }
 
 .workforce-toolkit-description {
-  grid-column: 1;
-  grid-row: 2;
-  align-self: start;
   max-width: 60ch;
   margin: 0.8rem 0 0;
   color: var(--on-light-muted);
@@ -1615,7 +1620,8 @@ h3,
 
 .workforce-toolkit-form {
   grid-column: 2;
-  grid-row: 1 / span 2;
+  grid-row: 1;
+  align-self: center;
   min-width: 0;
   padding-left: clamp(1.25rem, 3vw, 2rem);
   border-left: 1px solid var(--light-border);
@@ -1640,7 +1646,9 @@ h3,
 }
 
 .workforce-toolkit-form .fluentform textarea.ff-el-form-control {
-  min-height: 82px;
+  height: 88px !important;
+  min-height: 88px !important;
+  resize: none;
 }
 
 .workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style {
@@ -2575,8 +2583,11 @@ html.workforce-toolkit-open {
   }
 
   .workforce-toolkit-panel {
-    display: block;
+    display: grid;
     width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0;
     max-height: none;
     padding: 1.15rem;
     overflow: visible;
@@ -2594,6 +2605,8 @@ html.workforce-toolkit-open {
   }
 
   .workforce-toolkit-form {
+    grid-column: 1;
+    grid-row: 2;
     margin-top: 0.9rem;
     padding-top: 0.9rem;
     padding-left: 0;
@@ -2602,6 +2615,8 @@ html.workforce-toolkit-open {
   }
 
   .workforce-toolkit-close {
+    grid-column: 1;
+    grid-row: 1;
     width: 38px;
     height: 38px;
   }
@@ -2895,23 +2910,24 @@ body:has(.page-contact) .site-nav a[href="https://www.hirekeystaff.com/contact-u
   ></a>
 
   <div class="workforce-toolkit-panel">
-    <div class="workforce-toolkit-heading">
-      <div>
+    <div class="workforce-toolkit-copy">
+      <div class="workforce-toolkit-heading">
         <p class="eyebrow">Free Workforce Toolkit</p>
         <h2 class="display-sm" id="workforce-toolkit-title">Know What Staffing Should Cost.</h2>
       </div>
-      <a
-        class="workforce-toolkit-close"
-        href="#workforce-toolkit-dismissed"
-        aria-label="Close the workforce toolkit"
-      >
-        <span aria-hidden="true">&times;</span>
-      </a>
+
+      <p class="workforce-toolkit-description" id="workforce-toolkit-description">
+        Get instant access to our Staffing Pricing Calculator and hiring resources designed to help you make smarter workforce decisions.
+      </p>
     </div>
 
-    <p class="workforce-toolkit-description" id="workforce-toolkit-description">
-      Get instant access to our Staffing Pricing Calculator and hiring resources designed to help you make smarter workforce decisions.
-    </p>
+    <a
+      class="workforce-toolkit-close"
+      href="#workforce-toolkit-dismissed"
+      aria-label="Close the workforce toolkit"
+    >
+      <span aria-hidden="true">&times;</span>
+    </a>
 
     <div class="contact-form-embed workforce-toolkit-form">
       [fluentform id="4"]

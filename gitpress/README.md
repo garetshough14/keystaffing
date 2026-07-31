@@ -159,7 +159,9 @@ The repository controls the popup shell and styling, but Fluent Forms controls
 the fields, submit-button label, confirmation, and autoresponder. In
 **WordPress Admin > Fluent Forms > Form 4**:
 
-1. Include at least a First Name field and required Email field.
+1. Keep the popup form focused on First Name and required Email. Last Name can
+   remain optional, but remove the contact-form-only Subject and Message fields
+   so the toolkit form stays compact.
 2. Set the submit-button label to **Get My Free Workforce Toolkit**.
 3. Add an email notification addressed to the visitor's Email field with the
    subject **Your Workforce Planning Toolkit Is Ready**.
