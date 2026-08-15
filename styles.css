@@ -1492,6 +1492,243 @@ h3,
   box-shadow: none;
 }
 
+.workforce-toolkit-dismissed-target {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.workforce-toolkit {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: grid;
+  place-items: center;
+  padding: clamp(0.75rem, 3vw, 2rem);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  color-scheme: light;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition:
+    opacity var(--duration-medium) var(--ease-soft),
+    visibility var(--duration-medium) var(--ease-soft);
+}
+
+.workforce-toolkit-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(3, 19, 29, 0.8);
+  backdrop-filter: blur(6px);
+  cursor: default;
+}
+
+.workforce-toolkit-panel {
+  position: relative;
+  display: grid;
+  width: min(100%, 900px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(300px, 1.1fr);
+  grid-template-rows: auto;
+  column-gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  overflow: hidden;
+  border: 1px solid rgba(17, 82, 71, 0.28);
+  border-radius: var(--radius-lg);
+  background:
+    radial-gradient(circle at 92% 4%, rgba(17, 82, 71, 0.12), transparent 18rem),
+    var(--surface-white);
+  color: var(--on-light);
+  box-shadow: 0 32px 100px rgba(3, 19, 29, 0.48);
+}
+
+.workforce-toolkit-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  z-index: 2;
+  height: 5px;
+  background: linear-gradient(90deg, var(--forest-rich), var(--sage), var(--navy));
+}
+
+.workforce-toolkit-copy {
+  grid-column: 1;
+  grid-row: 1;
+  align-self: center;
+  padding-right: 2.75rem;
+}
+
+.workforce-toolkit-heading {
+  display: block;
+}
+
+.workforce-toolkit-heading .eyebrow {
+  margin-bottom: 0.55rem;
+  color: var(--forest-rich);
+}
+
+.workforce-toolkit-heading .display-sm {
+  max-width: 17ch;
+  margin-bottom: 0;
+  color: var(--navy);
+}
+
+.workforce-toolkit-close {
+  position: relative;
+  z-index: 3;
+  grid-column: 1;
+  grid-row: 1;
+  align-self: start;
+  justify-self: end;
+  display: inline-grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid var(--light-border-strong);
+  border-radius: 50%;
+  background: var(--surface-tint);
+  color: var(--navy);
+  font-size: 1.75rem;
+  line-height: 1;
+  transition:
+    transform var(--duration-fast) var(--ease-smooth),
+    background var(--duration-fast) var(--ease-soft),
+    border-color var(--duration-fast) var(--ease-soft);
+}
+
+.workforce-toolkit-close:hover,
+.workforce-toolkit-close:focus-visible {
+  transform: rotate(5deg);
+  border-color: rgba(17, 82, 71, 0.38);
+  outline: 3px solid rgba(17, 82, 71, 0.18);
+  outline-offset: 3px;
+  background: #e5f1ed;
+}
+
+.workforce-toolkit-description {
+  max-width: 60ch;
+  margin: 0.8rem 0 0;
+  color: var(--on-light-muted);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+}
+
+.workforce-toolkit-form {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: center;
+  min-width: 0;
+  padding-left: clamp(1.25rem, 3vw, 2rem);
+  border-left: 1px solid var(--light-border);
+}
+
+.workforce-toolkit-form .fluentform .ff-el-group {
+  margin-bottom: 0.65rem;
+}
+
+.workforce-toolkit-form .fluentform .ff-el-input--label {
+  margin-bottom: 0.28rem;
+}
+
+.workforce-toolkit-form .fluentform .ff-el-input--label label {
+  font-size: 0.88rem;
+}
+
+.workforce-toolkit-form .fluentform .ff-el-form-control {
+  min-height: 44px;
+  padding-top: 0.58rem;
+  padding-bottom: 0.58rem;
+}
+
+.workforce-toolkit-form .fluentform textarea.ff-el-form-control {
+  height: 88px !important;
+  min-height: 88px !important;
+  resize: none;
+}
+
+.workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style {
+  width: 100%;
+  min-height: 46px !important;
+  padding: 0.75rem 1.2rem !important;
+  border: 1px solid var(--forest-deep) !important;
+  border-radius: 999px !important;
+  background: var(--forest-rich) !important;
+  background-color: var(--forest-rich) !important;
+  color: var(--cream-strong) !important;
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  opacity: 1 !important;
+  box-shadow: 0 10px 24px rgba(13, 70, 61, 0.2);
+  transition:
+    transform var(--duration-fast) var(--ease-smooth),
+    background var(--duration-fast) var(--ease-soft),
+    box-shadow var(--duration-fast) var(--ease-soft);
+}
+
+.workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style:hover,
+.workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style:focus-visible {
+  transform: translateY(-2px);
+  border-color: var(--forest-deep) !important;
+  background: var(--forest-deep) !important;
+  background-color: var(--forest-deep) !important;
+  color: var(--cream-strong) !important;
+  box-shadow: 0 12px 28px rgba(13, 70, 61, 0.26);
+}
+
+.workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style:focus-visible {
+  outline: 3px solid rgba(17, 82, 71, 0.3);
+  outline-offset: 3px;
+}
+
+.workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style:active {
+  transform: translateY(0);
+}
+
+body:has(.page-landing) .workforce-toolkit:not(:target),
+body:has(.page-services) .workforce-toolkit:not(:target) {
+  animation-name: workforceToolkitReveal;
+  animation-duration: 1ms;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+  animation-timeline: scroll(root block);
+  animation-range: 0% 50%;
+}
+
+.workforce-toolkit:target,
+.workforce-toolkit.is-open {
+  animation: none;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.workforce-toolkit.is-dismissed {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+html.workforce-toolkit-open {
+  overflow: hidden;
+}
+
+#workforce-toolkit-dismissed:target + .workforce-toolkit {
+  animation: none;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
 .job-board-section {
   scroll-margin-top: 88px;
 }
@@ -2339,6 +2576,54 @@ h3,
     border-radius: var(--radius-md);
   }
 
+  .workforce-toolkit {
+    align-items: end;
+    padding: 0.75rem;
+  }
+
+  .workforce-toolkit-panel {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 0;
+    max-height: none;
+    padding: 1.15rem;
+    overflow: visible;
+    border-radius: var(--radius-md);
+  }
+
+  .workforce-toolkit-heading .display-sm {
+    font-size: clamp(1.65rem, 8vw, 2.1rem);
+  }
+
+  .workforce-toolkit-description {
+    margin-top: 0.55rem;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+
+  .workforce-toolkit-form {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0.9rem;
+    padding-top: 0.9rem;
+    padding-left: 0;
+    border-top: 1px solid var(--light-border);
+    border-left: 0;
+  }
+
+  .workforce-toolkit-close {
+    grid-column: 1;
+    grid-row: 1;
+    width: 38px;
+    height: 38px;
+  }
+
+  .workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style {
+    width: 100%;
+  }
+
   .branch-message-options {
     grid-template-columns: 1fr;
   }
@@ -2418,6 +2703,21 @@ h3,
 @keyframes siteProgress {
   to {
     transform: scaleX(1);
+  }
+}
+
+@keyframes workforceToolkitReveal {
+  0%,
+  99.9% {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
   }
 }
 
