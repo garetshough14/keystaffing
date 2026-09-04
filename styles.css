@@ -1633,7 +1633,7 @@ h3,
   border: 0;
 }
 
-.workforce-toolkit-audience legend {
+.workforce-toolkit-audience-heading {
   margin-bottom: 0.65rem;
   color: var(--navy);
   font-family: "Public Sans", Arial, sans-serif;
@@ -1643,15 +1643,12 @@ h3,
   text-transform: uppercase;
 }
 
-.workforce-toolkit-audience-input {
+.workforce-toolkit-audience-target {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
+  width: 0;
+  height: 0;
   overflow: hidden;
-  clip: rect(0 0 0 0);
-  clip-path: inset(50%);
-  white-space: nowrap;
+  pointer-events: none;
 }
 
 .workforce-toolkit-audience-options {
@@ -1660,7 +1657,7 @@ h3,
   gap: 0.55rem;
 }
 
-.workforce-toolkit-audience-options label {
+.workforce-toolkit-audience-options a {
   display: grid;
   min-height: 46px;
   place-items: center;
@@ -1675,6 +1672,7 @@ h3,
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
+  text-decoration: none;
   transition:
     transform var(--duration-fast) var(--ease-smooth),
     border-color var(--duration-fast) var(--ease-soft),
@@ -1683,20 +1681,19 @@ h3,
     box-shadow var(--duration-fast) var(--ease-soft);
 }
 
-.workforce-toolkit-audience-options label:hover {
+.workforce-toolkit-audience-options a:hover {
   transform: translateY(-1px);
   border-color: rgba(17, 82, 71, 0.48);
   background: #e5f1ed;
 }
 
-.workforce-toolkit-audience-candidate:focus-visible ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-candidate"],
-.workforce-toolkit-audience-client:focus-visible ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-client"] {
+.workforce-toolkit-audience-options a:focus-visible {
   outline: 3px solid rgba(17, 82, 71, 0.3);
   outline-offset: 3px;
 }
 
-.workforce-toolkit-audience-candidate:checked ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-candidate"],
-.workforce-toolkit-audience-client:checked ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-client"] {
+#workforce-toolkit-candidate:target ~ .workforce-toolkit-audience-options a[href="#workforce-toolkit-candidate"],
+#workforce-toolkit-client:target ~ .workforce-toolkit-audience-options a[href="#workforce-toolkit-client"] {
   border-color: var(--forest-rich);
   background: var(--forest-rich);
   color: var(--cream-strong);
@@ -1711,8 +1708,8 @@ h3,
   display: none;
 }
 
-.workforce-toolkit-audience-candidate:checked ~ .workforce-toolkit-form-panels .workforce-toolkit-candidate-form,
-.workforce-toolkit-audience-client:checked ~ .workforce-toolkit-form-panels .workforce-toolkit-client-form {
+#workforce-toolkit-candidate:target ~ .workforce-toolkit-form-panels .workforce-toolkit-candidate-form,
+#workforce-toolkit-client:target ~ .workforce-toolkit-form-panels .workforce-toolkit-client-form {
   display: block;
 }
 
@@ -1816,6 +1813,7 @@ body:has(.page-services) .workforce-toolkit:not(:target) {
 }
 
 .workforce-toolkit:target,
+.workforce-toolkit:has(.workforce-toolkit-audience-target:target),
 .workforce-toolkit.is-open {
   animation: none;
   opacity: 1;

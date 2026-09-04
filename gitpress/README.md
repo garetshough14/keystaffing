@@ -137,7 +137,9 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   appears after a visitor reaches the halfway point on Home or Services. The
   **View pricing clarity** button on Request an Employee also opens it directly.
   The halfway trigger uses the browser's scroll-driven CSS; the button trigger
-  remains available if a browser does not support that CSS.
+  remains available if a browser does not support that CSS. Keep the audience
+  controls as fragment links and targets: GitPress removes raw radio inputs from
+  the managed header before WordPress renders it.
 - The Haley remote job board template keeps `!!!HMG_INCLUDE!!!` as an exact,
   unformatted line inside a white desktop content area. Haley Marketing replaces
   this marker with the live career portal content when it builds

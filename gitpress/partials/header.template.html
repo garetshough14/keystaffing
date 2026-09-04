@@ -77,25 +77,29 @@
     </a>
 
     <div class="contact-form-embed workforce-toolkit-form">
-      <fieldset class="workforce-toolkit-audience">
-        <legend>I am contacting Key Staffing as a:</legend>
+      <div
+        class="workforce-toolkit-audience"
+        role="group"
+        aria-labelledby="workforce-toolkit-audience-title"
+      >
+        <p class="workforce-toolkit-audience-heading" id="workforce-toolkit-audience-title">
+          I am contacting Key Staffing as a:
+        </p>
 
-        <input
-          class="workforce-toolkit-audience-input workforce-toolkit-audience-candidate"
-          type="radio"
-          name="workforce-toolkit-audience"
+        <span
+          class="workforce-toolkit-audience-target"
           id="workforce-toolkit-candidate"
-        >
-        <input
-          class="workforce-toolkit-audience-input workforce-toolkit-audience-client"
-          type="radio"
-          name="workforce-toolkit-audience"
+          aria-hidden="true"
+        ></span>
+        <span
+          class="workforce-toolkit-audience-target"
           id="workforce-toolkit-client"
-        >
+          aria-hidden="true"
+        ></span>
 
         <div class="workforce-toolkit-audience-options">
-          <label for="workforce-toolkit-candidate">Candidate</label>
-          <label for="workforce-toolkit-client">Client</label>
+          <a href="#workforce-toolkit-candidate">Candidate</a>
+          <a href="#workforce-toolkit-client">Client</a>
         </div>
 
         <div class="workforce-toolkit-form-panels">
@@ -116,7 +120,7 @@
             [fluentform id="4"]
           </div>
         </div>
-      </fieldset>
+      </div>
     </div>
   </div>
 </section>
