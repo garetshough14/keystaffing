@@ -40,8 +40,8 @@ seconds is a practical starting point when the push webhook is enabled.
 
 Keep **Enable safe inner shortcode rendering inside GitHub HTML fragments**
 checked. GitPress allowlists the `fluentform` shortcode. The Contact Us page
-uses `[fluentform id="3"]`, and the shared workforce-toolkit popup uses
-`[fluentform id="4"]`.
+uses `[fluentform id="3"]`. In the shared popup, candidates use
+`[fluentform id="5"]` and clients use `[fluentform id="4"]`.
 
 Use this for **GitPress Managed Header Shortcode**:
 
@@ -132,11 +132,12 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   modal.
 - The Contact Us page renders Fluent Form 3 through GitPress's approved inner
   shortcode feature. Fluent Forms must be active and form ID 3 must exist.
-- The shared header renders Fluent Form 4 inside the workforce-toolkit popup.
-  The popup appears after a visitor reaches the halfway point on Home or
-  Services. The **View pricing clarity** button on Request an Employee also
-  opens it directly. The halfway trigger uses the browser's scroll-driven CSS;
-  the button trigger remains available if a browser does not support that CSS.
+- The shared header lets visitors choose Candidate or Client inside the popup.
+  Candidate displays Fluent Form 5; Client displays Fluent Form 4. The popup
+  appears after a visitor reaches the halfway point on Home or Services. The
+  **View pricing clarity** button on Request an Employee also opens it directly.
+  The halfway trigger uses the browser's scroll-driven CSS; the button trigger
+  remains available if a browser does not support that CSS.
 - The Haley remote job board template keeps `!!!HMG_INCLUDE!!!` as an exact,
   unformatted line inside a white desktop content area. Haley Marketing replaces
   this marker with the live career portal content when it builds

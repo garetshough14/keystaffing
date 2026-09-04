@@ -59,12 +59,12 @@
   <div class="workforce-toolkit-panel">
     <div class="workforce-toolkit-copy">
       <div class="workforce-toolkit-heading">
-        <p class="eyebrow">Free Workforce Toolkit</p>
-        <h2 class="display-sm" id="workforce-toolkit-title">Know What Staffing Should Cost.</h2>
+        <p class="eyebrow">Connect with Key Staffing</p>
+        <h2 class="display-sm" id="workforce-toolkit-title">How can we help?</h2>
       </div>
 
       <p class="workforce-toolkit-description" id="workforce-toolkit-description">
-        Get instant access to our Staffing Pricing Calculator and hiring resources designed to help you make smarter workforce decisions.
+        Choose whether you are looking for work or looking for talent, and we will get your message to the right team.
       </p>
     </div>
 
@@ -77,7 +77,46 @@
     </a>
 
     <div class="contact-form-embed workforce-toolkit-form">
-      [fluentform id="4"]
+      <fieldset class="workforce-toolkit-audience">
+        <legend>I am contacting Key Staffing as a:</legend>
+
+        <input
+          class="workforce-toolkit-audience-input workforce-toolkit-audience-candidate"
+          type="radio"
+          name="workforce-toolkit-audience"
+          id="workforce-toolkit-candidate"
+        >
+        <input
+          class="workforce-toolkit-audience-input workforce-toolkit-audience-client"
+          type="radio"
+          name="workforce-toolkit-audience"
+          id="workforce-toolkit-client"
+        >
+
+        <div class="workforce-toolkit-audience-options">
+          <label for="workforce-toolkit-candidate">Candidate</label>
+          <label for="workforce-toolkit-client">Client</label>
+        </div>
+
+        <div class="workforce-toolkit-form-panels">
+          <div class="workforce-toolkit-form-panel workforce-toolkit-candidate-form">
+            <div class="workforce-toolkit-form-intro">
+              <p class="card-label">Looking for Work?</p>
+              <h3>Tell us about your next opportunity.</h3>
+            </div>
+            [fluentform id="5"]
+          </div>
+
+          <div class="workforce-toolkit-form-panel workforce-toolkit-client-form">
+            <div class="workforce-toolkit-form-intro">
+              <p class="card-label">Need Talent?</p>
+              <h3>Build a stronger workforce.</h3>
+              <p>Get the Staffing Pricing Calculator and hiring resources built for smarter workforce decisions.</p>
+            </div>
+            [fluentform id="4"]
+          </div>
+        </div>
+      </fieldset>
     </div>
   </div>
 </section>

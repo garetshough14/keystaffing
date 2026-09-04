@@ -1627,6 +1627,118 @@ h3,
   border-left: 1px solid var(--light-border);
 }
 
+.workforce-toolkit-audience {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.workforce-toolkit-audience legend {
+  margin-bottom: 0.65rem;
+  color: var(--navy);
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.workforce-toolkit-audience-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.workforce-toolkit-audience-options {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+.workforce-toolkit-audience-options label {
+  display: grid;
+  min-height: 46px;
+  place-items: center;
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--light-border-strong);
+  border-radius: 999px;
+  background: var(--surface-tint);
+  color: var(--navy);
+  font-family: "Public Sans", Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    transform var(--duration-fast) var(--ease-smooth),
+    border-color var(--duration-fast) var(--ease-soft),
+    background var(--duration-fast) var(--ease-soft),
+    color var(--duration-fast) var(--ease-soft),
+    box-shadow var(--duration-fast) var(--ease-soft);
+}
+
+.workforce-toolkit-audience-options label:hover {
+  transform: translateY(-1px);
+  border-color: rgba(17, 82, 71, 0.48);
+  background: #e5f1ed;
+}
+
+.workforce-toolkit-audience-candidate:focus-visible ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-candidate"],
+.workforce-toolkit-audience-client:focus-visible ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-client"] {
+  outline: 3px solid rgba(17, 82, 71, 0.3);
+  outline-offset: 3px;
+}
+
+.workforce-toolkit-audience-candidate:checked ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-candidate"],
+.workforce-toolkit-audience-client:checked ~ .workforce-toolkit-audience-options label[for="workforce-toolkit-client"] {
+  border-color: var(--forest-rich);
+  background: var(--forest-rich);
+  color: var(--cream-strong);
+  box-shadow: 0 8px 20px rgba(13, 70, 61, 0.2);
+}
+
+.workforce-toolkit-form-panels {
+  margin-top: 1rem;
+}
+
+.workforce-toolkit-form-panel {
+  display: none;
+}
+
+.workforce-toolkit-audience-candidate:checked ~ .workforce-toolkit-form-panels .workforce-toolkit-candidate-form,
+.workforce-toolkit-audience-client:checked ~ .workforce-toolkit-form-panels .workforce-toolkit-client-form {
+  display: block;
+}
+
+.workforce-toolkit-form-intro {
+  margin-bottom: 0.85rem;
+}
+
+.workforce-toolkit-form-intro .card-label {
+  margin-bottom: 0.2rem;
+  color: var(--forest-rich);
+}
+
+.workforce-toolkit-form-intro h3 {
+  margin: 0;
+  color: var(--navy);
+  font-size: clamp(1.2rem, 2vw, 1.45rem);
+}
+
+.workforce-toolkit-form-intro > p:last-child:not(.card-label) {
+  margin: 0.35rem 0 0;
+  color: var(--on-light-muted);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
 .workforce-toolkit-form .fluentform .ff-el-group {
   margin-bottom: 0.65rem;
 }
@@ -2912,12 +3024,12 @@ body:has(.page-contact) .site-nav a[href="https://www.hirekeystaff.com/contact-u
   <div class="workforce-toolkit-panel">
     <div class="workforce-toolkit-copy">
       <div class="workforce-toolkit-heading">
-        <p class="eyebrow">Free Workforce Toolkit</p>
-        <h2 class="display-sm" id="workforce-toolkit-title">Know What Staffing Should Cost.</h2>
+        <p class="eyebrow">Connect with Key Staffing</p>
+        <h2 class="display-sm" id="workforce-toolkit-title">How can we help?</h2>
       </div>
 
       <p class="workforce-toolkit-description" id="workforce-toolkit-description">
-        Get instant access to our Staffing Pricing Calculator and hiring resources designed to help you make smarter workforce decisions.
+        Choose whether you are looking for work or looking for talent, and we will get your message to the right team.
       </p>
     </div>
 
@@ -2930,7 +3042,46 @@ body:has(.page-contact) .site-nav a[href="https://www.hirekeystaff.com/contact-u
     </a>
 
     <div class="contact-form-embed workforce-toolkit-form">
-      [fluentform id="4"]
+      <fieldset class="workforce-toolkit-audience">
+        <legend>I am contacting Key Staffing as a:</legend>
+
+        <input
+          class="workforce-toolkit-audience-input workforce-toolkit-audience-candidate"
+          type="radio"
+          name="workforce-toolkit-audience"
+          id="workforce-toolkit-candidate"
+        >
+        <input
+          class="workforce-toolkit-audience-input workforce-toolkit-audience-client"
+          type="radio"
+          name="workforce-toolkit-audience"
+          id="workforce-toolkit-client"
+        >
+
+        <div class="workforce-toolkit-audience-options">
+          <label for="workforce-toolkit-candidate">Candidate</label>
+          <label for="workforce-toolkit-client">Client</label>
+        </div>
+
+        <div class="workforce-toolkit-form-panels">
+          <div class="workforce-toolkit-form-panel workforce-toolkit-candidate-form">
+            <div class="workforce-toolkit-form-intro">
+              <p class="card-label">Looking for Work?</p>
+              <h3>Tell us about your next opportunity.</h3>
+            </div>
+            [fluentform id="5"]
+          </div>
+
+          <div class="workforce-toolkit-form-panel workforce-toolkit-client-form">
+            <div class="workforce-toolkit-form-intro">
+              <p class="card-label">Need Talent?</p>
+              <h3>Build a stronger workforce.</h3>
+              <p>Get the Staffing Pricing Calculator and hiring resources built for smarter workforce decisions.</p>
+            </div>
+            [fluentform id="4"]
+          </div>
+        </div>
+      </fieldset>
     </div>
   </div>
 </section>
