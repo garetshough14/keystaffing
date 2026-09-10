@@ -1542,7 +1542,7 @@ h3,
 .workforce-toolkit-panel {
   position: relative;
   display: grid;
-  width: min(100%, 900px);
+  width: min(100%, 560px);
   min-width: 0;
   min-height: 0;
   max-height: 100%;
@@ -1560,17 +1560,24 @@ h3,
 
 /* Keep the close control visible while long forms scroll within the viewport. */
 .workforce-toolkit-content {
-  display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
-  gap: clamp(1.5rem, 4vw, 3rem);
   min-width: 0;
   min-height: 0;
   padding: 0.5rem clamp(1.25rem, 3vw, 2rem) clamp(1.25rem, 3vw, 2rem);
   overflow: auto;
   overscroll-behavior: contain;
-  scrollbar-gutter: stable;
   scroll-padding-block: 1rem;
   overflow-wrap: anywhere;
+}
+
+/* Preserve touch, wheel, and keyboard scrolling without a visible scrollbar. */
+.workforce-toolkit-content,
+.branch-message-popover {
+  scrollbar-width: none;
+}
+
+.workforce-toolkit-content::-webkit-scrollbar,
+.branch-message-popover::-webkit-scrollbar {
+  display: none;
 }
 
 .workforce-toolkit-panel::before {
@@ -1580,28 +1587,6 @@ h3,
   z-index: 2;
   height: 5px;
   background: linear-gradient(90deg, var(--forest-rich), var(--sage), var(--navy));
-}
-
-.workforce-toolkit-copy {
-  grid-column: 1;
-  grid-row: 1;
-  align-self: center;
-  min-width: 0;
-}
-
-.workforce-toolkit-heading {
-  display: block;
-}
-
-.workforce-toolkit-heading .eyebrow {
-  margin-bottom: 0.55rem;
-  color: var(--forest-rich);
-}
-
-.workforce-toolkit-heading .display-sm {
-  max-width: 17ch;
-  margin-bottom: 0;
-  color: var(--navy);
 }
 
 .workforce-toolkit-close {
@@ -1634,21 +1619,9 @@ h3,
   background: #e5f1ed;
 }
 
-.workforce-toolkit-description {
-  max-width: 60ch;
-  margin: 0.8rem 0 0;
-  color: var(--on-light-muted);
-  font-size: 1.1rem;
-}
-
 .workforce-toolkit-form {
   container-type: inline-size;
-  grid-column: 2;
-  grid-row: 1;
-  align-self: center;
   min-width: 0;
-  padding-left: clamp(1.25rem, 3vw, 2rem);
-  border-left: 1px solid var(--light-border);
 }
 
 .workforce-toolkit-audience {
@@ -2748,34 +2721,11 @@ html.workforce-toolkit-open {
   }
 
   .workforce-toolkit-panel {
-    width: 100%;
     border-radius: var(--radius-md);
   }
 
   .workforce-toolkit-content {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 0;
     padding: 0.5rem 1.15rem 1.15rem;
-  }
-
-  .workforce-toolkit-heading .display-sm {
-    font-size: 2.1rem;
-  }
-
-  .workforce-toolkit-description {
-    margin-top: 0.55rem;
-    font-size: 0.95rem;
-    line-height: 1.5;
-  }
-
-  .workforce-toolkit-form {
-    grid-column: 1;
-    grid-row: 2;
-    margin-top: 0.9rem;
-    padding-top: 0.9rem;
-    padding-left: 0;
-    border-top: 1px solid var(--light-border);
-    border-left: 0;
   }
 
   .workforce-toolkit-form .fluentform .ff-btn-submit.ff_btn_style {
