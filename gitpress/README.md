@@ -40,8 +40,8 @@ seconds is a practical starting point when the push webhook is enabled.
 
 Keep **Enable safe inner shortcode rendering inside GitHub HTML fragments**
 checked. GitPress allowlists the `fluentform` shortcode. The Contact Us page
-uses `[fluentform id="3"]`. In the shared popup, candidates use
-`[fluentform id="5"]` and clients use `[fluentform id="4"]`.
+uses `[fluentform id="3"]`. In the shared popup, hiring managers use
+`[fluentform id="4"]` and job seekers use `[fluentform id="5"]`.
 
 Use this for **GitPress Managed Header Shortcode**:
 
@@ -132,8 +132,8 @@ Set these values on the WordPress pages (or in the site's SEO plugin):
   modal.
 - The Contact Us page renders Fluent Form 3 through GitPress's approved inner
   shortcode feature. Fluent Forms must be active and form ID 3 must exist.
-- The shared header lets visitors choose Candidate or Client inside the popup.
-  Candidate displays Fluent Form 5; Client displays Fluent Form 4. The popup
+- The shared header lets visitors choose Hiring Manager or Job Seeker inside the popup.
+  Hiring Manager displays Fluent Form 4; Job Seeker displays Fluent Form 5. The popup
   appears after a visitor reaches the halfway point on Home or Services. The
   **View pricing clarity** button on Request an Employee also opens it directly.
   The halfway trigger uses the browser's scroll-driven CSS; the button trigger
